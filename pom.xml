@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.java.common.lang</groupId>
 	<artifactId>java-common-lang</artifactId>
-	<version>1.0.2018052601</version>
+	<version>1.0.2018061401</version>
 
 	<parent>
 		<groupId>com.github.project</groupId>
 		<artifactId>project-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.2018061401</version>
 	</parent>
 
 	<dependencies>

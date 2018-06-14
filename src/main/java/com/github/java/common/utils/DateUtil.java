@@ -26,6 +26,7 @@ public final class DateUtil {
     public final static String                    shortFormat          = "yyyyMMdd";
     public final static String                    longFormat           = "yyyyMMddHHmmss";
     public final static String                    webFormat            = "yyyy-MM-dd";
+    public final static String                    webTimeFormat        = "yyyy-MM-dd-HH-mm-ss";
     public final static String                    timeFormat           = "HHmmss";
     public final static String                    monthFormat          = "yyyyMM";
     public final static String                    chineseDtFormat      = "yyyy年MM月dd日";
