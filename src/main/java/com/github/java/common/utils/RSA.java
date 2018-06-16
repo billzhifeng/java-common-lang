@@ -283,19 +283,6 @@ public class RSA {
         return null;
     }
 
-    public static void main(String[] args) {
-        String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJegSSYYo2zQCUZ8+FAkOTKZCVOczZaEwmdjvBkVRdhGndwtDs0fPifM1DaBzGhcAYauzJU/zkgGMSBvvHKWnI266fBFwqUTDOVBD2WzMWrtlPUmJrN3y/lNrSPb+RAiyqR+i1LC8ym5P++sGVj5ByRfeKKfb3AHLEG9wWiIrFWRAgMBAAECgYBjSua8GORkbHO2gj4GFUKTnN4bsBJ9oCDCnfBeqKydbdkQhz0rHGuSmrLZovRd3ups7Wkxz5/hUJS5PhK1I2YO8Ca76rSscsFNrxRp3i40QXOQcYN5Wmg/vb2FAhrBzlyvWYqw3WskuhTJGdls01zhp/cXP1CmNoD3oUGgFF7WAQJBAOsQJKabt21G35DnxkU/03ldHmtg0KpuYDZbUz6OCjrK8cKXM4acHVQ0rUlrO64BmmZwSRGxXLGES4dX+242HyECQQClIaGqzd0rbsyhbTX29Zp8exCjKfxGApncUvxMgppvIIZ6flEXLZKo22apK+Biu/jz20PbRrTrbJ8CQ6XXrZhxAkA0+r93+bK+43FyJHsQkpEkUnOPuhNtxlDTD4RUngj6NVGGDTQky7zkhLblzFB4KI5XNkmRvkrpC6tGRvM5ZONhAkB2CUpEi47ywuqm4SfX9cuN+3HzD8nySV2t7evGzPyTPs6htLVGOh9BcEM73c8xBGh591vT3ADq3+PxfGWJe98hAkEAkh7VuEiA4ESh3zZn6VXrEAvbR8mZvodRIP5G8doNYx4hnW+iJf6oMPmUxxHAGraj2xBg/APtS54Ypx9p/DUBRg==";
-        String alipayPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCXoEkmGKNs0AlGfPhQJDkymQlTnM2WhMJnY7wZFUXYRp3cLQ7NHz4nzNQ2gcxoXAGGrsyVP85IBjEgb7xylpyNuunwRcKlEwzlQQ9lszFq7ZT1Jiazd8v5Ta0j2/kQIsqkfotSwvMpuT/vrBlY+QckX3iin29wByxBvcFoiKxVkQIDAQAB";
-        String plainText = "body=途虎234测试&buyer_email=15021399156&buyer_id=2088702451461824&exterface=create_direct_pay_by_user&extra_common_param=PMRHAYLZNVSW45CJNZZXI4TVMN2GS33OJFSCEORCGE3DKNBCFQRG65LUIJUXUTTPEI5CEMRRGEYTCMJQGA4SELBCOJSXI5LSNZKXE3BCHIRGQ5DUOA5C6L3XO53S45DVNB2S4Y3OEIWCE3LFOJRWQYLOORHG6IR2EIZDAOBYGUYTCOBTGA4TMNZYGAZCELBCMNUGC3TOMVWEG33EMURDUISDJBAU4TSFJRPUCTCJKBAVSX2EJFJEKQ2UEJ6Q&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InYwe9W%2ByiTfZpa8khRkj%2Fc%2FEhIf3nNxezcq05P%2BeV1XNOCNGEX&notify_time=2017-06-22 11:03:21&notify_type=trade_status_sync&out_trade_no=1187&payment_type=1&seller_email=lantuzhifubao@tuhu.cn&seller_id=2088511830967802&subject=途虎234测试&total_fee=0.01&trade_no=2017062221001004820221467519&trade_status=TRADE_SUCCESS";
-        String sign = RSA.sign(plainText, privateKey, NameConstant.UTF8);
-        System.out.println(sign);
-        boolean b = RSA.verify(plainText, sign, alipayPublicKey, NameConstant.UTF8);
-        System.out.println(b);
-
-        System.out.println("----------------------");
-        testRSA256(privateKey, alipayPublicKey, plainText);
-    }
-
     private static void testRSA256(String privateKey, String alipayPublicKey, String plainText) {
         String sign = RSA.sign(RSA.SHA256_SIGN_ALGORITHMS, plainText, privateKey, NameConstant.UTF8);
         System.out.println(sign);
