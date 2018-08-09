@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.github.java.common.base.BaseEnum;
 import com.github.java.common.base.BaseException;
-import com.github.java.common.base.ReturnCodeEnum;
 
 /**
  */
@@ -108,12 +107,13 @@ public class JavaAssert<E extends BaseException> {
      * @param message
      * @param class1
      */
-    public static <E extends BaseException> void isNum(String text, String message, Class<E> exceptionCls) {
+    public static <E extends BaseException> void isNum(String text, BaseEnum returnCode, String message,
+                                                       Class<E> exceptionCls) {
         boolean isNum = Pattern.compile("^[0-9]*$").matcher(text).find();
         if (!isNum) {
             log.warn("{},args:{}", message, text);
 
-            throwException(ReturnCodeEnum.PARAM_VALIDATE_ERROR, message, exceptionCls);
+            throwException(returnCode, "不是正整数", exceptionCls);
         }
     }
 

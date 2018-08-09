@@ -1,6 +1,7 @@
 package com.github.java.common.utils;
 
 import java.security.MessageDigest;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,7 +17,14 @@ public class MD5 {
     public static void main(String[] args) {
         //System.out.println(sign("我们" + "aaa", "UTF-8"));
         // 8472c72b5cd2441ed154de9ba2e8deb0
-        System.out.println(getSHA1("1213sdvgfdvnfdbn.fdmv.fm29ru390r43fj4opfj", "UTF-8"));
+        //System.out.println(getSHA1("1213sdvgfdvnfdbn.fdmv.fm29ru390r43fj4opfj", "UTF-8"));
+
+        long startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < 90000; i++) {
+            getMD5(UUID.randomUUID().toString(), "UTF-8");
+        }
+        System.out.println((double) (System.currentTimeMillis() - startTime) / 1000);
     }
 
     /**

@@ -7,14 +7,29 @@ import org.slf4j.LoggerFactory;
 
 /**
  */
-public class BaseResp<T> extends Page implements Serializable {
+public class BaseResp<T> extends Printable implements Serializable {
 
-    private static final long   serialVersionUID = -6333627171476575637L;
+    /**
+     * 
+     */
+    private static final long   serialVersionUID = -7740706265719603284L;
+
     private static final Logger log              = LoggerFactory.getLogger(BaseResp.class);
+
+    /**
+     * 成功
+     */
+    private static final int    successCode      = 10000;
+
+    /**
+     * 失败
+     */
+    private static final int    failCode         = 99999;
+
     /**
      * 返回code
      */
-    private Integer             returnCode;
+    private Integer             returnCode       = failCode;                               //默认失败
 
     /**
      * 返回code 描述
@@ -25,15 +40,10 @@ public class BaseResp<T> extends Page implements Serializable {
 
     public static <E extends BaseResp> E buildFailResp(String msg, Class<E> clazz) {
 
-        return buildBaseResp(ReturnCodeEnum.FAIL.getCode(), msg, clazz);
+        return buildBaseResp(failCode, msg, clazz);
     }
 
     public static <E extends BaseResp> E buildFailResp(BaseEnum code, String msg, Class<E> clazz) {
-
-        return buildBaseResp(code.getCode(), String.format("%s,%s", code.getDesc(), msg), clazz);
-    }
-
-    public static <E extends BaseResp> E buildFailResp(ReturnCodeEnum code, String msg, Class<E> clazz) {
 
         return buildBaseResp(code.getCode(), String.format("%s,%s", code.getDesc(), msg), clazz);
     }
@@ -57,13 +67,24 @@ public class BaseResp<T> extends Page implements Serializable {
         return e;
     }
 
+    public void fail(Throwable t) {
+        if (t instanceof BaseException) {
+            BaseException e = (BaseException) t;
+            this.setReturnCode(e.getReturnCode());
+            this.setReturnMsg(e.getReturnMsg());
+        } else {
+            this.setReturnCode(failCode);
+            this.setReturnMsg(t.getMessage());
+        }
+    }
+
     /**
      * 构建成功结果
      *
      * @return
      */
     public static <E extends BaseResp> E buildSuccessResp(Class<E> clazz) {
-        return buildBaseResp(ReturnCodeEnum.SUCCESS.getCode(), ReturnCodeEnum.SUCCESS.getDesc(), clazz);
+        return buildBaseResp(successCode, "成功", clazz);
     }
 
     /**
@@ -79,7 +100,7 @@ public class BaseResp<T> extends Page implements Serializable {
         E e = null;
 
         if (t instanceof IllegalArgumentException) {
-            e = buildFailResp(ReturnCodeEnum.REQUEST_ARGUMENTS_ILLEGAL, t.getMessage(), clazz);
+            e = buildBaseResp(failCode, "系统异常", clazz);
         } else if (t instanceof BaseException) {
 
             e = buildFailResp((BaseException) t, clazz);
@@ -96,7 +117,7 @@ public class BaseResp<T> extends Page implements Serializable {
      * @return
      */
     public boolean isSuccess() {
-        return ReturnCodeEnum.SUCCESS.getCode() == returnCode;
+        return successCode == returnCode;
     }
 
     public int getReturnCode() {
