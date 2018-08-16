@@ -21,7 +21,7 @@ public class Page<T> extends Printable implements Serializable {
     /**
      * 请求开始
      */
-    private int               offSet           = 1;
+    private int               offSet           = -1;
 
     /**
      * 请求条数
@@ -33,6 +33,6 @@ public class Page<T> extends Printable implements Serializable {
      */
     private int               totalCountNum;
 
-    private List<T>           data;
+    private List<T>           pageData;
 
 }
