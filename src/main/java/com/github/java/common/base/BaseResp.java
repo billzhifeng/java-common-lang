@@ -5,15 +5,9 @@ import java.io.Serializable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- */
 public class BaseResp<T> extends Printable implements Serializable {
 
-    /**
-     * 
-     */
-    private static final long   serialVersionUID = -7740706265719603284L;
-
+    private static final long   serialVersionUID = -6333627171476575637L;
     private static final Logger log              = LoggerFactory.getLogger(BaseResp.class);
 
     /**
@@ -47,6 +41,14 @@ public class BaseResp<T> extends Printable implements Serializable {
 
         return buildBaseResp(code.getCode(), String.format("%s,%s", code.getDesc(), msg), clazz);
     }
+
+    /**
+     * 已废弃 by wangzhifeng 2018 -7- 12
+     */
+    //    public static <E extends BaseResp> E buildFailResp(ReturnCodeEnum code, String msg, Class<E> clazz) {
+    //
+    //        return buildBaseResp(code.getCode(), String.format("%s,%s", code.getDesc(), msg), clazz);
+    //    }
 
     public static <E extends BaseResp> E buildFailResp(BaseException t, Class<E> clazz) {
 
@@ -100,6 +102,7 @@ public class BaseResp<T> extends Printable implements Serializable {
         E e = null;
 
         if (t instanceof IllegalArgumentException) {
+            // 废弃  e = buildFailResp(ReturnCodeEnum.FAIL, "系统异常", clazz);
             e = buildBaseResp(failCode, "系统异常", clazz);
         } else if (t instanceof BaseException) {
 
