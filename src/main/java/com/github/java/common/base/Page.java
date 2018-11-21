@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 分页信息
+ * 分页，已废弃
  */
 @Setter
 @Getter

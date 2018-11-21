@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 已废弃
  */
 @Setter
 @Getter

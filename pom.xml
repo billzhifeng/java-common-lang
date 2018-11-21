@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.java.common.lang</groupId>
 	<artifactId>java-common-lang</artifactId>
-	<version>1.0.201808091</version>
+	<version>1.0.2018112101</version>
 
 	<parent>
 		<groupId>com.github.project</groupId>
 		<artifactId>project-parent</artifactId>
-		<version>1.0.2018061401</version>
+		<version>1.0.2018112101</version>
 	</parent>
 
 	<dependencies>
@@ -43,6 +43,46 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>nexus_public</id>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus_public</id>
+			<url>http://localhost:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<id>release</id>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
