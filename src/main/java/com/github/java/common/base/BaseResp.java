@@ -88,6 +88,19 @@ public class BaseResp<T> extends Printable implements Serializable {
     public static <E extends BaseResp> E buildSuccessResp(Class<E> clazz) {
         return buildBaseResp(successCode, "成功", clazz);
     }
+    
+
+    /**
+     * 构建成功结果
+     *
+     * @return
+     */
+    public static BaseResp buildSuccessBaseResp() {
+        BaseResp resp = new BaseResp();
+        resp.setReturnCode(successCode);
+        resp.setReturnMsg("成功");
+        return resp;
+    }
 
     /**
      * 构建执行失败结果
